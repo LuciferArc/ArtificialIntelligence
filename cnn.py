@@ -11,10 +11,10 @@ from keras.layers import *
 from keras.optimizers import SGD, Adam
 import keras
 dataset_path = './dataset'
-text_filenames = ['0_simplifyweibo.txt', '1_simplifyweibo.txt',
-                  '2_simplifyweibo.txt', '3_simplifyweibo.txt']
-output_text_filename = 'raw_weibo_text.csv'
-output_cln_text_filename = 'clean_weibo_text.csv'
+text_filenames = ['0_AI.txt', '1_AI.txt',
+                  '2_AI.txt', '3_AI.txt']
+output_text_filename = 'raw_AI_text.csv'
+output_cln_text_filename = 'clean_AI_text.csv'
 is_first_run = False
 load_np = False
 
@@ -70,22 +70,22 @@ def run_main():
     if load_np:
         train_X = np.load("train_x.npy")
         print(train_X.shape)
-        train_X = train_X.reshape(train_X.shape[0],1,train_X.shape[1])
+        train_X = train_X.reshape(train_X.shape[0], 1, train_X.shape[1])
         print(train_X.shape)
         train_y = np.load("train_y.npy")
         test_X = np.load("test_X.npy")
-        test_X = test_X.reshape(test_X.shape[0],1,test_X.shape[1])
+        test_X = test_X.reshape(test_X.shape[0], 1, test_X.shape[1])
         test_y = np.load("test_y.npy")
     else:
         train_X, train_y = extract_feat_from_data(train_text_df, text_collection, common_words_freqs)
-        np.save("train_x.npy",train_X)
-        np.save("train_y.npy",train_y)
+        np.save("train_x.npy", train_X)
+        np.save("train_y.npy", train_y)
         print('完成')
         print()
         print('测试样本提取特征...', end=' ')
         test_X, test_y = extract_feat_from_data(test_text_df, text_collection, common_words_freqs)
-        np.save("test_X.npy",test_X)
-        np.save("test_y.npy",test_y)
+        np.save("test_X.npy", test_X)
+        np.save("test_y.npy", test_y)
         print('完成')
     print('训练模型...', end=' ')
     # 创建高斯朴素贝叶斯模型
@@ -114,7 +114,7 @@ def cal_cnn_acc(true_labels, pred_labels):
 
 def get_model(n_common_words):
     model = Sequential()
-    model.add(Dense(256, activation='relu',input_shape=(n_common_words,)))
+    model.add(Dense(256, activation='relu', input_shape=(n_common_words,)))
     model.add(Dropout(0.5))
     model.add(Dense(128, activation='relu'))
     model.add(Dropout(0.5))
