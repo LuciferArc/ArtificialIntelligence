@@ -8,14 +8,14 @@ from nltk.text import TextCollection
 from sklearn.naive_bayes import GaussianNB
 
 dataset_path = './dataset'
-text_filenames = ['0_simplifyweibo.txt', '1_simplifyweibo.txt',
-                  '2_simplifyweibo.txt', '3_simplifyweibo.txt']
+text_filenames = ['0_AI.txt', '1_AI.txt',
+                  '2_AI.txt', '3_AI.txt']
 
 # 原始数据的csv文件
-output_text_filename = 'raw_weibo_text.csv'
+output_text_filename = 'raw_AI_text.csv'
 
 # 清洗好的文本数据文件
-output_cln_text_filename = 'clean_weibo_text.csv'
+output_cln_text_filename = 'clean_AI_text.csv'
 
 # 处理和清洗文本数据的时间较长，通过设置is_first_run进行配置
 # 如果是第一次运行需要对原始文本数据进行处理和清洗，需要设为True
