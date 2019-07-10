@@ -11,7 +11,7 @@ stopwords1 = [line.rstrip() for line in open('./中文停用词库.txt', 'r', en
 stopwords2 = [line.rstrip() for line in open('./哈工大停用词表.txt', 'r', encoding='utf-8')]
 stopwords3 = [line.rstrip() for line in open('./四川大学机器智能实验室停用词库.txt', 'r', encoding='utf-8')]
 stopwords = stopwords1 + stopwords2 + stopwords3
-#stopwords = stopwords1 + stopwords2
+# stopwords = stopwords1 + stopwords2
 
 
 def proc_text(raw_line):
@@ -21,7 +21,7 @@ def proc_text(raw_line):
     """
     # 1. 使用正则表达式去除非中文字符
     #    在 [] 内使用 ^ 表示非，否则表示行首
-    filter_pattern = re.compile('[^\u4E00-\u9FD5]+')
+    filter_pattern = re.compile('[^\u4e00-\u9fa5]+')
     # 将所有非中文字符替换为""
     chinese_only = filter_pattern.sub('', raw_line)
 
@@ -31,15 +31,15 @@ def proc_text(raw_line):
 
     # 3. 去除停用词
     # 将所有非停用词的词语存到列表里
-    meaninful_words = []
+    meaningful_words = []
     for word, flag in words_lst:
-        #if (word not in stopwords) and (flag == 'v'):
-            # 也可根据词性去除非动词等
+        # if (word not in stopwords) and (flag == 'v'):
+        # 也可根据词性去除非动词等
         if word not in stopwords:
-            meaninful_words.append(word)
+            meaningful_words.append(word)
 
     # 返回一个字符串
-    return ' '.join(meaninful_words)
+    return ' '.join(meaningful_words)
 
 
 def split_train_test(text_df, size=0.8):
@@ -125,7 +125,7 @@ def extract_feat_from_data(text_df, text_collection, common_words_freqs):
     # i 表示行索引， r_data 表示行数据
     # 每次循环一行
     for i, r_data in text_df.iterrows():
-        #每隔5000行就打印一次log
+        # 每隔5000行就打印一次log
         if (i + 1) % 5000 == 0:
             print('已完成{}个样本的特征提取'.format(i + 1))
 
@@ -161,7 +161,7 @@ def cal_acc(true_labels, pred_labels):
 
     # 判断模型预测结果和情感值，如果相等返回True，表示预测成功，否则返回False，表示预测失败。
     correct_list = [true_labels[i] == pred_labels[i] for i in range(n_total)]
-    #[True, True, False, False, True....]
+    # [True, True, False, False, True....]
 
     # sum(correct_list) 统计所有成功的行，和总行数的商，表示预测准确率。
     acc = sum(correct_list) / n_total
