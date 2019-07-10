@@ -1,4 +1,4 @@
-# ArtificialIntelligent
+# ArtificialIntelligence
 
 cnn.py为使用cnn完成的自然语言情感分析，main.py则是使用高斯朴素贝叶斯模型进行分析，两种代码大致程序不一样，但运行结果是一样的。read.py文件为读取数据集中内容的操作，tools.py为两种程序所需的一部分功能函数代码。
 
